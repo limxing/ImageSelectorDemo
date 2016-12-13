@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.leefeng.imageselector">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <application
+        android:allowBackup="true"
+        android:largeHeap="true"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".ImageLoaderActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".imagelook.ImageLookActivity" />
+    </application>
+
+</manifest>
