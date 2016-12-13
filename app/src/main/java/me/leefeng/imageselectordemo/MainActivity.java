@@ -28,17 +28,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getPic(View view) {
-        ImgSelConfig.maxNum=1;
-        ImgSelConfig.titleHeight=44*3;
-        ImgSelConfig.titleColor= Color.parseColor("#ff0099");
-        ImgSelConfig.bottomBarColor= Color.parseColor("#ff0033");
+//        ImgSelConfig.maxNum=1;
+//        ImgSelConfig.titleHeight=44*3;
+//        ImgSelConfig.titleColor= Color.parseColor("#ff0099");
+//        ImgSelConfig.bottomBarColor= Color.parseColor("#ff0033");
 //        ImgSelConfig.isStateTran=false;
-        ImgSelConfig.loadMethod=new ImageLoadMethod() {
-            @Override
-            public void displayImage(Context context, String path, ImageView imageView) {
-                Glide.with(context).load(path).placeholder(me.leefeng.imageselector.R.drawable.ic_default_image).into(imageView);
-            }
-        };
+//        ImgSelConfig.loadMethod=new ImageLoadMethod() {
+//            @Override
+//            public void displayImage(Context context, String path, ImageView imageView) {
+//                Glide.with(context).load(path).placeholder(me.leefeng.imageselector.R.drawable.ic_default_image).into(imageView);
+//            }
+//        };
         ImageLoaderActivity.startActivityForResult(this, null);
     }
 
