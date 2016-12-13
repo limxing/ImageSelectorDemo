@@ -1,5 +1,8 @@
 # ImageSelectorDemo
 Androd ImageSelector Android图片选择器
+
+<img src="pic01.png"/>
+<img src="pic02.png"/>
 <img src="gif.gif"/> 
 
 ####引用
