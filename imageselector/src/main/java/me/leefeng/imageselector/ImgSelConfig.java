@@ -1,5 +1,6 @@
 package me.leefeng.imageselector;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 
 import java.util.ArrayList;
@@ -13,9 +14,8 @@ public class ImgSelConfig {
     public static final int REQUEST_CODE = 999;
     public static final int RESULT_CODE = 888;
 
-    public static int titleBacColor = 0xffffffff;
-    public static int titleColor = 0xff000000;
-    public static int stateColor = 0x00000000;
+    public static int titleColor = Color.parseColor("#0056ac");
+    public static int bottomBarColor = Color.parseColor("#0056ac");
     public static int titleHeight;
     public static Drawable titleBackImage;
     public static boolean needCamera = false;

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.leefeng.imageselector.Image;
+import me.leefeng.imageselector.ImgSelConfig;
 import me.leefeng.imageselector.PhotoView.PhotoView;
 
 /**
@@ -27,13 +28,13 @@ import me.leefeng.imageselector.PhotoView.PhotoView;
  * 修改历史：
  */
 public class ViewPagerAdapter extends PagerAdapter {
-    private  Context context;
+    private Context context;
     private List<Image> list;
     private List<WeakReference<PhotoView>> imageList;
 
-    public ViewPagerAdapter(List list,Context context) {
+    public ViewPagerAdapter(List list, Context context) {
         this.list = list;
-        this.context=context;
+        this.context = context;
         imageList = new ArrayList<>();
     }
 
@@ -70,10 +71,13 @@ public class ViewPagerAdapter extends PagerAdapter {
         }
         view.enable();
         view.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        Glide.with(container.getContext())
-                .load(att.getPath())
-                .into(view);
-
+        if (ImgSelConfig.loadMethod != null) {
+            ImgSelConfig.loadMethod.displayImage(context, att.getPath(), view);
+        } else {
+            Glide.with(container.getContext())
+                    .load(att.getPath())
+                    .into(view);
+        }
         imageList.remove(0);
         return view;
     }
@@ -103,7 +107,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     }
 
     public void onDestory() {
-        context=null;
+        context = null;
         list = null;
         clear();
         imageList.clear();

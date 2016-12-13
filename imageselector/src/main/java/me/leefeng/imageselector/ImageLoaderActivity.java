@@ -62,7 +62,15 @@ public class ImageLoaderActivity extends AppCompatActivity implements FolderList
             StatusBarCompat.translucentStatusBar(this);
         setContentView(R.layout.activity_selectimage);
         array = getIntent().getStringArrayListExtra("array");
+        findViewById(R.id.selectimage_title).setBackgroundColor(ImgSelConfig.titleColor);//标题背景颜色
+        View selectimage_title_height=findViewById(R.id.selectimage_title_height);
+        if (ImgSelConfig.titleHeight != 0) {
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) selectimage_title_height.getLayoutParams();
+            lp.height = ImgSelConfig.titleHeight;
+            selectimage_title_height.setLayoutParams(lp);
+        }
         View selectimage_bottom = findViewById(R.id.selectimage_bottom);
+        selectimage_bottom.setBackgroundColor(ImgSelConfig.bottomBarColor);//底部bar颜色
         selectimage_list_folder_bac = findViewById(R.id.selectimage_list_folder_bac);
         selectimage_list_folder_bac.setOnClickListener(new View.OnClickListener() {
             @Override

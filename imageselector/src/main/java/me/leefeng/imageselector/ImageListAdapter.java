@@ -42,8 +42,12 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.Imag
     @Override
     public void onBindViewHolder(final ImageListView holder, final int position) {
         final Image image = list.get(position);
-        Glide.with(context).load(image.getPath()).placeholder(R.drawable.ic_default_image)
-                .into(holder.imageView);
+        if (ImgSelConfig.loadMethod!=null){
+            ImgSelConfig.loadMethod.displayImage(context,image.getPath(),holder.imageView);
+        }else {
+            Glide.with(context).load(image.getPath()).placeholder(R.drawable.ic_default_image)
+                    .into(holder.imageView);
+        }
         if (ImgSelConfig.maxNum != 0) {
             if (checkedList.contains(image)) {
                 holder.checkBox.setImageResource(R.drawable.imgsel_icon_selected);
