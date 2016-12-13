@@ -18,7 +18,7 @@ public class ImgSelConfig {
     public static int bottomBarColor = Color.parseColor("#0056ac");
     public static int titleHeight;
     public static Drawable titleBackImage;
-    public static boolean needCamera = false;
+//    public static boolean needCamera = false;
     //    public static ArrayList<String> array;
     public static int maxNum = 9;
     public static int spanCount = 3;

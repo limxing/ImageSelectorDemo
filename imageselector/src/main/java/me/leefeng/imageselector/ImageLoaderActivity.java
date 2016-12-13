@@ -219,8 +219,8 @@ public class ImageLoaderActivity extends AppCompatActivity implements FolderList
                     } while (data.moveToNext());
 
                     imageList.clear();
-                    if (ImgSelConfig.needCamera)
-                        imageList.add(new Image());
+//                    if (ImgSelConfig.needCamera)
+//                        imageList.add(new Image());
                     imageList.addAll(tempImageList);
 
                     Folder folder = new Folder();

@@ -4,14 +4,20 @@ package me.leefeng.imageselector;
  * Image bean
  * Created by Yancy on 2015/12/2.
  */
-public class Image {
+public class Image<T> {
 
     private String path;
     private String name;
     private long time;
-    public boolean isCamera;
+    private T data;
 
+    public T getData() {
+        return data;
+    }
 
+    public void setData(T data) {
+        this.data = data;
+    }
 
     public Image(String path, String name, long time) {
         this.path = path;
@@ -19,9 +25,6 @@ public class Image {
         this.time = time;
     }
 
-    public Image() {
-        isCamera = true;
-    }
 
     public Image(String s, long s1) {
         this.path = s;
@@ -50,16 +53,6 @@ public class Image {
 
     public void setTime(long time) {
         this.time = time;
-    }
-
-
-
-    public boolean isCamera() {
-        return isCamera;
-    }
-
-    public void setCamera(boolean camera) {
-        isCamera = camera;
     }
 
 
