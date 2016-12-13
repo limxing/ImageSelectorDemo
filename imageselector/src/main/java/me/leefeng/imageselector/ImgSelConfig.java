@@ -28,5 +28,6 @@ public class ImgSelConfig {
 
     public static ImageLoadMethod loadMethod;
     public static boolean isStateTran=true;
+    public static boolean showImageName;
 
 }

@@ -63,7 +63,7 @@ public class ImageLoaderActivity extends AppCompatActivity implements FolderList
         setContentView(R.layout.activity_selectimage);
         array = getIntent().getStringArrayListExtra("array");
         findViewById(R.id.selectimage_title).setBackgroundColor(ImgSelConfig.titleColor);//标题背景颜色
-        View selectimage_title_height=findViewById(R.id.selectimage_title_height);
+        View selectimage_title_height = findViewById(R.id.selectimage_title_height);
         if (ImgSelConfig.titleHeight != 0) {
             RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) selectimage_title_height.getLayoutParams();
             lp.height = ImgSelConfig.titleHeight;
@@ -191,9 +191,12 @@ public class ImageLoaderActivity extends AppCompatActivity implements FolderList
                     data.moveToFirst();
                     do {
                         String path = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[0]));
-//                        String name = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[1]));
+                        String name = null;
+                        if (ImgSelConfig.showImageName) {
+                            name = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[1]));
+                        }
                         long dateTime = data.getLong(data.getColumnIndexOrThrow(IMAGE_PROJECTION[2]));
-                        Image image = new Image(path, dateTime);
+                        Image image = new Image(path, name, dateTime);
                         if (!image.getPath().endsWith("gif"))
                             tempImageList.add(image);
                         if (!hasFolderGened) {

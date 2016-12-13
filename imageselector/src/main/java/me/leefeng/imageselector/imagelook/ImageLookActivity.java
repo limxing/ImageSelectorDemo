@@ -28,6 +28,7 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
     private ViewPagerAdapter adapter;
     private ViewPager vp;
     private TextView title_name;
+    private TextView imagelook_name;
     private ImageView imageLookCheck;
 //    private CheckBox imagelook_cb;
 
@@ -38,7 +39,9 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
             StatusBarCompat.translucentStatusBar(this);
         setContentView(R.layout.activity_imagelook);
         vp = (ViewPager) findViewById(R.id.imagelook_vp);
+
         title_name = (TextView) findViewById(R.id.selectimage_title_name);
+        imagelook_name = (TextView) findViewById(R.id.imagelook_name);
         imageLookCheck = (ImageView) findViewById(R.id.imagelook_cb);
         imageLookCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,16 +61,14 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
         });
         int position = getIntent().getIntExtra("position", 0);
         list = ImgSelConfig.currentList;
-        title_name.setText(position + 1 + "/" + list.size());
         adapter = new ViewPagerAdapter(list, this);
         vp.setAdapter(adapter);
+        vp.addOnPageChangeListener(this);
         vp.setCurrentItem(position);
-        if (ImgSelConfig.checkedList.contains(list.get(position))) {
-            imageLookCheck.setImageResource(R.drawable.imgsel_icon_selected);
+        if (position == 0) {
+            onPageSelected(0);
         }
-        if (ImgSelConfig.titleBackImage != null) {
-            ((ImageView) findViewById(R.id.imagelook_bac)).setImageDrawable(ImgSelConfig.titleBackImage);
-        }
+
         findViewById(R.id.imagelook_bac).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +76,7 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
                 finish();
             }
         });
-        vp.addOnPageChangeListener(this);
+
     }
 
     @Override
@@ -103,11 +104,18 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
 
     @Override
     public void onPageSelected(int position) {
+        Image image = list.get(position);
         title_name.setText(position + 1 + "/" + list.size());
         if (ImgSelConfig.checkedList.contains(list.get(position))) {
             imageLookCheck.setImageResource(R.drawable.imgsel_icon_selected);
         } else {
             imageLookCheck.setImageResource(R.drawable.imgsel_icon_unselected);
+        }
+        if (image.getName() != null && image.getName().length() > 0) {
+            imagelook_name.setVisibility(View.VISIBLE);
+            imagelook_name.setText(image.getName());
+        } else if (imagelook_name.getVisibility() == View.VISIBLE) {
+            imagelook_name.setVisibility(View.GONE);
         }
     }
 
