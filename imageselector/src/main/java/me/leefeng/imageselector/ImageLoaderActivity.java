@@ -341,6 +341,7 @@ public class ImageLoaderActivity extends AppCompatActivity implements FolderList
     public void onItemClick(int position) {
         if (ImgSelConfig.maxNum != 0) {
             ImgSelConfig.isLook=false;
+            ImgSelConfig.lastIsNone=false;
             Intent intent = new Intent(this, ImageLookActivity.class);
             intent.putExtra("position", position);
             startActivityForResult(intent, 0);

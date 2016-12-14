@@ -31,4 +31,5 @@ public class ImgSelConfig {
     public static boolean showImageName;
 
     public static boolean isLook=false;
+    public static boolean lastIsNone=false;
 }

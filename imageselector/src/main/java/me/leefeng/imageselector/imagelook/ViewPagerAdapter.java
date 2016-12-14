@@ -40,6 +40,9 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
+        if (ImgSelConfig.lastIsNone) {
+            return list.size() - 1;
+        }
         return list.size();
     }
 
