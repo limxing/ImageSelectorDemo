@@ -31,6 +31,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.Imag
         checkedList = new ArrayList<>();
         ImgSelConfig.checkedList = checkedList;//指向
         this.listItemListener = listItemListener;
+
     }
 
     @Override
@@ -114,6 +115,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.Imag
     }
 
     public void addCheckedImage(Image image) {
+
         checkedList.add(image);
     }
 

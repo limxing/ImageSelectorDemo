@@ -30,4 +30,5 @@ public class ImgSelConfig {
     public static boolean isStateTran=true;
     public static boolean showImageName;
 
+    public static boolean isLook=false;
 }

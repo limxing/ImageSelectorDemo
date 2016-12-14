@@ -10,6 +10,7 @@ public class Image<T> {
     private String name;
     private long time;
     private T data;
+    private int resource;
 
     public T getData() {
         return data;
@@ -29,6 +30,14 @@ public class Image<T> {
     public Image(String s, long s1) {
         this.path = s;
         this.time = s1;
+    }
+
+    public int getResource() {
+        return resource;
+    }
+
+    public void setResource(int resource) {
+        this.resource = resource;
     }
 
     public String getPath() {

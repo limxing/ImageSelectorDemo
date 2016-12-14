@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <me.leefeng.imageselector.SqureImageView
         android:id="@+id/selimg_list_item_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

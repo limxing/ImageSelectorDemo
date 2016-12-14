@@ -42,23 +42,27 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
 
         title_name = (TextView) findViewById(R.id.selectimage_title_name);
         imagelook_name = (TextView) findViewById(R.id.imagelook_name);
-        imageLookCheck = (ImageView) findViewById(R.id.imagelook_cb);
-        imageLookCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = vp.getCurrentItem();
-                if (ImgSelConfig.checkedList.contains(list.get(position))) {
-                    ImgSelConfig.checkedList.remove(list.get(position));
-                    imageLookCheck.setImageResource(R.drawable.imgsel_icon_unselected);
-                } else if (ImgSelConfig.checkedList.size() >= ImgSelConfig.maxNum) {
-                    Toast.makeText(view.getContext(), "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    ImgSelConfig.checkedList.add(list.get(position));
-                    imageLookCheck.setImageResource(R.drawable.imgsel_icon_selected);
+        if (!ImgSelConfig.isLook) {
+            imageLookCheck = (ImageView) findViewById(R.id.imagelook_cb);
+            imageLookCheck.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = vp.getCurrentItem();
+                    if (ImgSelConfig.checkedList.contains(list.get(position))) {
+                        ImgSelConfig.checkedList.remove(list.get(position));
+                        imageLookCheck.setImageResource(R.drawable.imgsel_icon_unselected);
+                    } else if (ImgSelConfig.checkedList.size() >= ImgSelConfig.maxNum) {
+                        Toast.makeText(view.getContext(), "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+                        ImgSelConfig.checkedList.add(list.get(position));
+                        imageLookCheck.setImageResource(R.drawable.imgsel_icon_selected);
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            imageLookCheck.setVisibility(View.GONE);
+        }
         int position = getIntent().getIntExtra("position", 0);
         list = ImgSelConfig.currentList;
         adapter = new ViewPagerAdapter(list, this);
@@ -69,7 +73,11 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
             onPageSelected(0);
         }
 
-        findViewById(R.id.imagelook_bac).setOnClickListener(new View.OnClickListener() {
+        ImageView back = (ImageView) findViewById(R.id.imagelook_bac);
+        if (ImgSelConfig.titleBackImage != null) {
+            back.setImageDrawable(ImgSelConfig.titleBackImage);
+        }
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setResult(RESULT_OK);
@@ -106,16 +114,20 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
     public void onPageSelected(int position) {
         Image image = list.get(position);
         title_name.setText(position + 1 + "/" + list.size());
-        if (ImgSelConfig.checkedList.contains(list.get(position))) {
-            imageLookCheck.setImageResource(R.drawable.imgsel_icon_selected);
-        } else {
-            imageLookCheck.setImageResource(R.drawable.imgsel_icon_unselected);
-        }
+
         if (image.getName() != null && image.getName().length() > 0) {
             imagelook_name.setVisibility(View.VISIBLE);
             imagelook_name.setText(image.getName());
         } else if (imagelook_name.getVisibility() == View.VISIBLE) {
             imagelook_name.setVisibility(View.GONE);
+        }
+        if (ImgSelConfig.isLook) {
+            return;
+        }
+        if (ImgSelConfig.checkedList.contains(list.get(position))) {
+            imageLookCheck.setImageResource(R.drawable.imgsel_icon_selected);
+        } else {
+            imageLookCheck.setImageResource(R.drawable.imgsel_icon_unselected);
         }
     }
 
