@@ -42,8 +42,9 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
 
         title_name = (TextView) findViewById(R.id.selectimage_title_name);
         imagelook_name = (TextView) findViewById(R.id.imagelook_name);
+        imageLookCheck = (ImageView) findViewById(R.id.imagelook_cb);
+
         if (!ImgSelConfig.isLook) {
-            imageLookCheck = (ImageView) findViewById(R.id.imagelook_cb);
             imageLookCheck.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
