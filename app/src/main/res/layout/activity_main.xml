@@ -16,4 +16,9 @@
         android:layout_height="wrap_content"
         android:text="选择图片"
         android:onClick="getPic"/>
+    <ImageView
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/delete"/>
 </RelativeLayout>

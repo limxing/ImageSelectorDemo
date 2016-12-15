@@ -2,6 +2,7 @@ package me.leefeng.imageselector.imagelook;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,6 +29,8 @@ import me.leefeng.imageselector.PhotoView.PhotoView;
  * 修改历史：
  */
 public class ViewPagerAdapter extends PagerAdapter {
+    private final int width;
+    private final int height;
     private Context context;
     private List<Image> list;
     private List<WeakReference<PhotoView>> imageList;
@@ -36,6 +39,9 @@ public class ViewPagerAdapter extends PagerAdapter {
         this.list = list;
         this.context = context;
         imageList = new ArrayList<>();
+      width=  context.getResources().getDisplayMetrics().widthPixels;
+      height=  context.getResources().getDisplayMetrics().heightPixels;
+        Log.i("", "ViewPagerAdapter: "+width+"=="+height);
     }
 
     @Override
@@ -79,6 +85,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         } else {
             Glide.with(container.getContext())
                     .load(att.getPath())
+                    .override(width,height)
                     .into(view);
         }
         imageList.remove(0);

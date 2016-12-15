@@ -47,7 +47,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.Imag
             ImgSelConfig.loadMethod.displayImage(context,image.getPath(),holder.imageView);
         }else {
             Glide.with(context).load(image.getPath()).placeholder(R.drawable.ic_default_image)
-                    .into(holder.imageView);
+                    .override(500,500).into(holder.imageView);
         }
         if (ImgSelConfig.maxNum != 0) {
             if (checkedList.contains(image)) {
