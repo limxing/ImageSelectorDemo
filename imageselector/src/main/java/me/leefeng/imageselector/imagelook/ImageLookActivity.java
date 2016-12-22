@@ -114,8 +114,7 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
     @Override
     public void onPageSelected(int position) {
         Image image = list.get(position);
-        title_name.setText(position + 1 + "/" + list.size());
-
+        title_name.setText(position + 1 + "/" + adapter.getCount());
         if (image.getName() != null && image.getName().length() > 0) {
             imagelook_name.setVisibility(View.VISIBLE);
             imagelook_name.setText(image.getName());
