@@ -197,7 +197,7 @@ public class ImageLoaderActivity extends AppCompatActivity implements FolderList
                         }
                         long dateTime = data.getLong(data.getColumnIndexOrThrow(IMAGE_PROJECTION[2]));
                         Image image = new Image(path, name, dateTime);
-                        if (!image.getPath().endsWith("gif"))
+                        if (image.getPath().endsWith("jpg"))
                             tempImageList.add(image);
                         if (!hasFolderGened) {
                             File imageFile = new File(path);
