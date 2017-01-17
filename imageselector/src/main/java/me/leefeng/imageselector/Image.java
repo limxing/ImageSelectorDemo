@@ -5,7 +5,11 @@ package me.leefeng.imageselector;
  * Created by Yancy on 2015/12/2.
  */
 public class Image<T> {
+    enum Style {PIC, MP4, MP3}
 
+
+private Style style=Style.PIC;
+    private String extendPath;
     private String path;
     private String name;
     private long time;
@@ -74,6 +78,30 @@ public class Image<T> {
             e.printStackTrace();
         }
         return super.equals(o);
+    }
+
+    public Style getStyle() {
+        return style;
+    }
+
+    public void setStyle(Style style) {
+        this.style = style;
+    }
+
+    public String getExtendPath() {
+        return extendPath;
+    }
+
+    public void setExtendPath(String extendPath) {
+        this.extendPath = extendPath;
+    }
+
+    public String getTimeLength() {
+        long fen = time / 1000 / 60;
+        long miao = time / 1000;
+        if (fen != 0)
+            miao = time / 1000 % fen;
+        return fen + "\'" + miao + "\'\'";
     }
 
 }
