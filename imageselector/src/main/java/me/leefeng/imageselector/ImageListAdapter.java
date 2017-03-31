@@ -50,32 +50,52 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.Imag
                     .override(500,500).into(holder.imageView);
         }
         if (ImgSelConfig.maxNum != 0) {
-            if (checkedList.contains(image)) {
-                holder.checkBox.setImageResource(R.drawable.imgsel_icon_selected);
-            } else {
-                holder.checkBox.setImageResource(R.drawable.imgsel_icon_unselected);
-            }
-            holder.checkBox.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+            holder.checkBox.setmChecked(checkedList.contains(image));
+//            if (checkedList.contains(image)) {
+//
+//                holder.checkBox.setImageResource(R.drawable.imgsel_icon_selected);
+//            } else {
+//                holder.checkBox.setImageResource(R.drawable.imgsel_icon_unselected);
+//            }
+            holder.checkBox.setOnCheckedChangeListener(new RoundChoiceView.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RoundChoiceView view, boolean isChecked) {
+                    if (checkedList.contains(image)) {
+                        checkedList.remove(image);
+//                        holder.checkBox.setImageResource(R.drawable.imgsel_icon_unselected);
 
-                            if (checkedList.contains(image)) {
-                                checkedList.remove(image);
-                                holder.checkBox.setImageResource(R.drawable.imgsel_icon_unselected);
-
-                            } else if (checkedList.size() >= ImgSelConfig.maxNum) {
-                                Toast.makeText(context, "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
-                            } else {
-                                checkedList.add(image);
-                                holder.checkBox.setImageResource(R.drawable.imgsel_icon_selected);
-                            }
-
-                            listItemListener.onItemChecked(position);
-                        }
+                    } else if (checkedList.size() >= ImgSelConfig.maxNum) {
+                        Toast.makeText(context, "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
+                        holder.checkBox.setmChecked(false);
+                    } else {
+                        checkedList.add(image);
+//                        holder.checkBox.setImageResource(R.drawable.imgsel_icon_selected);
                     }
 
-            );
+                    listItemListener.onItemChecked(position);
+                }
+            });
+//            holder.checkBox.setOnClickListener(
+//                    new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//
+//                            if (checkedList.contains(image)) {
+//                                checkedList.remove(image);
+//                                holder.checkBox.setImageResource(R.drawable.imgsel_icon_unselected);
+//
+//                            } else if (checkedList.size() >= ImgSelConfig.maxNum) {
+//                                Toast.makeText(context, "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
+//                            } else {
+//                                checkedList.add(image);
+//                                holder.checkBox.setImageResource(R.drawable.imgsel_icon_selected);
+//                            }
+//
+//                            listItemListener.onItemChecked(position);
+//                        }
+//                    }
+//
+//            );
         }else{
             holder.checkBox.setVisibility(View.GONE);
         }
@@ -122,12 +142,12 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.Imag
 
     public class ImageListView extends RecyclerView.ViewHolder {
         ImageView imageView;
-        ImageView checkBox;
+        RoundChoiceView checkBox;
 
         public ImageListView(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.selimg_list_item_iv);
-            checkBox = (ImageView) itemView.findViewById(R.id.selimg_list_item_cb);
+            checkBox = (RoundChoiceView) itemView.findViewById(R.id.selimg_list_item_cb);
         }
 
     }
