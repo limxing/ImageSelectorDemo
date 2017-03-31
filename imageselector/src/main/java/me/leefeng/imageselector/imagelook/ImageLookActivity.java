@@ -17,6 +17,7 @@ import java.util.List;
 import me.leefeng.imageselector.Image;
 import me.leefeng.imageselector.ImgSelConfig;
 import me.leefeng.imageselector.R;
+import me.leefeng.imageselector.RoundChoiceView;
 import me.leefeng.imageselector.StatusBarCompat;
 
 /**
@@ -29,7 +30,7 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
     private ViewPager vp;
     private TextView title_name;
     private TextView imagelook_name;
-    private ImageView imageLookCheck;
+    private RoundChoiceView imageLookCheck;
 //    private CheckBox imagelook_cb;
 
     @Override
@@ -42,25 +43,46 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
 
         title_name = (TextView) findViewById(R.id.selectimage_title_name);
         imagelook_name = (TextView) findViewById(R.id.imagelook_name);
-        imageLookCheck = (ImageView) findViewById(R.id.imagelook_cb);
+        imageLookCheck = (RoundChoiceView) findViewById(R.id.imagelook_cb);
 
         if (!ImgSelConfig.isLook) {
-            imageLookCheck.setOnClickListener(new View.OnClickListener() {
+            imageLookCheck.setOnCheckedChangeListener(new RoundChoiceView.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RoundChoiceView view, boolean isChecked) {
+                    int position = vp.getCurrentItem();
+                    if (ImgSelConfig.checkedList.contains(list.get(position))) {
+                        ImgSelConfig.checkedList.remove(list.get(position));
+                        imageLookCheck.setmChecked(false);
+                    } else if (ImgSelConfig.checkedList.size() >= ImgSelConfig.maxNum) {
+                        Toast.makeText(view.getContext(), "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
+                        imageLookCheck.setmChecked(false);
+                        return;
+                    } else {
+                        ImgSelConfig.checkedList.add(list.get(position));
+                        imageLookCheck.setmChecked(true);
+                    }
+                }
+            });
+
+            /*imageLookCheck.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = vp.getCurrentItem();
                     if (ImgSelConfig.checkedList.contains(list.get(position))) {
                         ImgSelConfig.checkedList.remove(list.get(position));
-                        imageLookCheck.setImageResource(R.drawable.imgsel_icon_unselected);
+//                        imageLookCheck.setImageResource(R.drawable.imgsel_icon_unselected);
+                        imageLookCheck.setmChecked(false);
                     } else if (ImgSelConfig.checkedList.size() >= ImgSelConfig.maxNum) {
                         Toast.makeText(view.getContext(), "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
+                        imageLookCheck.setmChecked(false);
                         return;
                     } else {
                         ImgSelConfig.checkedList.add(list.get(position));
-                        imageLookCheck.setImageResource(R.drawable.imgsel_icon_selected);
+//                        imageLookCheck.setImageResource(R.drawable.imgsel_icon_selected);
+                        imageLookCheck.setmChecked(true);
                     }
                 }
-            });
+            });*/
         } else {
             imageLookCheck.setVisibility(View.GONE);
         }
@@ -125,9 +147,11 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
             return;
         }
         if (ImgSelConfig.checkedList.contains(list.get(position))) {
-            imageLookCheck.setImageResource(R.drawable.imgsel_icon_selected);
+//            imageLookCheck.setImageResource(R.drawable.imgsel_icon_selected);
+            imageLookCheck.setmChecked(true);
         } else {
-            imageLookCheck.setImageResource(R.drawable.imgsel_icon_unselected);
+//            imageLookCheck.setImageResource(R.drawable.imgsel_icon_unselected);
+            imageLookCheck.setmChecked(false);
         }
     }
 

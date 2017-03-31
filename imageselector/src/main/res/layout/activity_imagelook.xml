@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#000">
 
     <android.support.v4.view.ViewPager
@@ -38,7 +39,7 @@
                 android:textColor="#fff"
                 android:textSize="18sp" />
 
-            <ImageView
+           <!-- <ImageView
                 android:id="@+id/imagelook_cb"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -46,8 +47,25 @@
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
                 android:paddingRight="20dp"
-                android:src="@drawable/imgsel_icon_unselected" />
-
+                android:src="@drawable/imgsel_icon_unselected" />-->
+            <me.leefeng.imageselector.RoundChoiceView
+                android:id="@+id/imagelook_cb"
+                android:layout_alignParentRight="true"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                android:padding="2dp"
+                android:clickable="true"
+                app:backgroundColor="#30000000"
+                app:borderColor="@android:color/white"
+                app:checked="false"
+                app:checkedColor="@color/style"
+                app:crossColor="@android:color/white"
+                app:crossType="cross"
+                app:number="2"
+                app:rippleBorderWidth="2dp"
+                app:rippleduration="300"
+                app:textSize="18sp" />
 
         </RelativeLayout>
     </RelativeLayout>
