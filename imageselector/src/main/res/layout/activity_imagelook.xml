@@ -50,11 +50,12 @@
                 android:src="@drawable/imgsel_icon_unselected" />-->
             <me.leefeng.imageselector.RoundChoiceView
                 android:id="@+id/imagelook_cb"
+                android:paddingRight="20dp"
                 android:layout_alignParentRight="true"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/roundChiceView_size"
+                android:layout_height="@dimen/roundChiceView_size"
                 android:layout_gravity="center_horizontal"
-                android:padding="2dp"
+                android:padding="4dp"
                 android:clickable="true"
                 app:backgroundColor="#30000000"
                 app:borderColor="@android:color/white"

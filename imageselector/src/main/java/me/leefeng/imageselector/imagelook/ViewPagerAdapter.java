@@ -79,7 +79,7 @@ public class ViewPagerAdapter extends PagerAdapter {
             container.addView(view);
         }
         view.enable();
-        view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        view.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         if (ImgSelConfig.loadMethod != null) {
             ImgSelConfig.loadMethod.displayImage(context, att.getPath(), view);
         } else {
