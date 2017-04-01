@@ -51,7 +51,7 @@ public class PhotoView extends ImageView {
     private boolean isEnable = false;//是否能够触摸
     private boolean isInit;
     private boolean mAdjustViewBounds;
-    // 当前是否处于放大状态
+    // if bigger
     private boolean isZoonUp;
     private boolean canRotate;
 
@@ -655,7 +655,7 @@ public class PhotoView extends ImageView {
     }
 
     /**
-     * 匹配两个Rect的共同部分输出到out，若无共同部分则输出0，0，0，0
+     *
      */
     private void mapRect(RectF r1, RectF r2, RectF out) {
 
@@ -1124,12 +1124,6 @@ public class PhotoView extends ImageView {
     }
 
     /**
-     * 在PhotoView内部还没有图片的时候同样可以调用该方法
-     * <p></p>
-     * 此时并不会播放动画，当给PhotoView设置图片后会自动播放动画。
-     * <p></p>
-     * 若等待时间过长也没有给控件设置图片，则会忽略该动画，若要再次播放动画则需要重新调用该方法
-     * (等待的时间默认500毫秒，可以通过setMaxAnimFromWaiteTime(int)设置最大等待时间)
      */
     public void animaFrom(Info info) {
 
@@ -1194,7 +1188,7 @@ public class PhotoView extends ImageView {
             mScaleCenter.set(mImgRect.left + mImgRect.width() / 2, mImgRect.top + mImgRect.height() / 2);
             mRotateCenter.set(mScaleCenter);
 
-            // 将图片旋转回正常位置，用以计算
+            //
             mAnimaMatrix.postRotate(-mDegrees, mScaleCenter.x, mScaleCenter.y);
             mAnimaMatrix.mapRect(mImgRect, mBaseRect);
 
@@ -1237,7 +1231,7 @@ public class PhotoView extends ImageView {
     }
 
     /**
-     * 设置为方形
+     *
      * @param square
      */
     public void setSquare(boolean square) {

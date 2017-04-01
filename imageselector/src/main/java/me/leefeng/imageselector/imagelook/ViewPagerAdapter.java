@@ -18,15 +18,13 @@ import me.leefeng.imageselector.ImgSelConfig;
 import me.leefeng.imageselector.PhotoView.PhotoView;
 
 /**
- * 版权：北京航天世景信息技术有限公司
- * <p>
- * 作者：李利锋
- * <p>
- * 创建日期：2016/8/30 15:23
- * <p>
- * 描述：
- * <p>
- * 修改历史：
+ *
+ *
+ * @author leefeng.me
+ *
+ * 2016/8/30 15:23
+ *
+ *
  */
 public class ViewPagerAdapter extends PagerAdapter {
     private final int width;
@@ -66,15 +64,15 @@ public class ViewPagerAdapter extends PagerAdapter {
         }
         view = imageList.get(0).get();
 
-        if (view == null) {  //由于用了弱引用，所以当垃圾回收器进行回收的时候就回收所有内存
+        if (view == null) {
             clear();
-            imageList.clear();   //需要先清理，GC后对象内存被回收
+            imageList.clear();
             initView(2);
             view = imageList.get(0).get();
         }
 
         ViewGroup parent = (ViewGroup) view.getParent();
-        if (parent != null) {   //这里的parent是ViewPager
+        if (parent != null) {
         } else {
             container.addView(view);
         }
@@ -105,7 +103,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         if (imageList != null) {
-            imageList.add(new WeakReference<>((PhotoView) object));   //添加进缓存
+            imageList.add(new WeakReference<>((PhotoView) object));
         }
         container.removeView((View) object);
         Glide.clear((View) object);
@@ -139,7 +137,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
 
     /**
-     * 处理notifyDataSetChanged无反应
+     *
      */
     private int mChildCount = 0;
 

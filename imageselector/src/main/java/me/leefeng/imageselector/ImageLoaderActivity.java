@@ -94,7 +94,7 @@ public class ImageLoaderActivity extends AppCompatActivity implements FolderList
         if (ImgSelConfig.maxNum <= 0) {//不设上限选择
             selectimage_title_right.setVisibility(View.GONE);
         }
-        if (ImgSelConfig.maxNum == 0) {//单选，某一个返回
+        if (ImgSelConfig.maxNum == 0) {//select one pic
             findViewById(R.id.selectimage_confirm).setVisibility(View.GONE);
         }
         selectimage_folder_tv = (TextView) findViewById(R.id.selectimage_folder_tv);
@@ -318,7 +318,7 @@ public class ImageLoaderActivity extends AppCompatActivity implements FolderList
     }
 
     /**
-     * 图片的点击事件
+     * pic click
      *
      * @param position
      */

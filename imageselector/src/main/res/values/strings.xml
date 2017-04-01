@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ImageSelector</string>
+    <string name="imgsize1">context</string>
+    <string name="imgsize2">张图片</string>
 </resources>

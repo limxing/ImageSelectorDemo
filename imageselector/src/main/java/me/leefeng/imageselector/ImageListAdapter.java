@@ -65,7 +65,8 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.Imag
 //                        holder.checkBox.setImageResource(R.drawable.imgsel_icon_unselected);
 
                     } else if (checkedList.size() >= ImgSelConfig.maxNum) {
-                        Toast.makeText(context, "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, context.getResources().getString(R.string.imgsize1)
+                                + ImgSelConfig.maxNum + context.getResources().getString(R.string.imgsize2), Toast.LENGTH_SHORT).show();
                         holder.checkBox.setmChecked(false);
                     } else {
                         checkedList.add(image);
@@ -85,7 +86,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.Imag
 //                                holder.checkBox.setImageResource(R.drawable.imgsel_icon_unselected);
 //
 //                            } else if (checkedList.size() >= ImgSelConfig.maxNum) {
-//                                Toast.makeText(context, "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
+//
 //                            } else {
 //                                checkedList.add(image);
 //                                holder.checkBox.setImageResource(R.drawable.imgsel_icon_selected);

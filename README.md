@@ -7,7 +7,7 @@ Androd ImageSelector Android图片选择器
 
 ####引用
 ```
-compile 'me.leefeng:imageselector:1.0.0'
+compile 'me.leefeng:imageselector:1.0.6'
 ```
 
 ####配置

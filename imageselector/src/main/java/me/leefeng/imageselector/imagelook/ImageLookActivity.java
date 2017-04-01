@@ -54,7 +54,8 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
                         ImgSelConfig.checkedList.remove(list.get(position));
 //                        imageLookCheck.setmChecked(false);
                     } else if (ImgSelConfig.checkedList.size() >= ImgSelConfig.maxNum) {
-                        Toast.makeText(view.getContext(), "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), vp.getResources().getString(R.string.imgsize1)
+                                + ImgSelConfig.maxNum + vp.getResources().getString(R.string.imgsize2), Toast.LENGTH_SHORT).show();
                         imageLookCheck.setmChecked(false);
                         return;
                     } else {
@@ -73,7 +74,6 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
 //                        imageLookCheck.setImageResource(R.drawable.imgsel_icon_unselected);
                         imageLookCheck.setmChecked(false);
                     } else if (ImgSelConfig.checkedList.size() >= ImgSelConfig.maxNum) {
-                        Toast.makeText(view.getContext(), "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
                         imageLookCheck.setmChecked(false);
                         return;
                     } else {
@@ -161,7 +161,7 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
     }
 
     /**
-     * Checkbox状态改变
+     *
      *
      * @param compoundButton
      * @param b
@@ -170,7 +170,8 @@ public class ImageLookActivity extends AppCompatActivity implements ViewPager.On
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
         if (b) {
             if (ImgSelConfig.checkedList.size() >= ImgSelConfig.maxNum) {
-                Toast.makeText(this, "最多选择" + ImgSelConfig.maxNum + "张图片", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, vp.getResources().getString(R.string.imgsize1) +
+                        ImgSelConfig.maxNum +vp.getResources().getString(R.string.imgsize2) , Toast.LENGTH_SHORT).show();
 //                compoundButton.setChecked(false);
 //                imagelook_cb.setChecked(false);
                 return;
